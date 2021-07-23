@@ -15,7 +15,6 @@
     }
 
       void thirtyOneMonth(){
-        system("cls");
         for(int i = 0; i <= 31; i++){
             printf("| %d |", i); //creates calendar
             if(i % 7 == 0){ //newline for a new week
@@ -25,7 +24,6 @@
     }
 
     void thirtyMonth(){
-        system("cls");
         for(int i = 0; i <= 30; i++){
             printf("| %d |", i);
             if(i % 7 == 0){
