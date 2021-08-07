@@ -1,14 +1,8 @@
-/*This file is incomplete right now, the save feature doesn't work right now and I need to learn more about file 
-mainpulation, stdin, stdout, etc before those functions work.
-Also, I really like C and C++! They are both really fun! If you are reading this have a nice day!*/
-
-#define MAX 255
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 
 int year;
-
+    //This allows for the creation of your very own custom calendar
     void customCalendar(){
         int days;
         int saveChoice;
@@ -16,7 +10,6 @@ int year;
         scanf("%d", &days);
         printf("Would you like to save your calendar?\n");
         scanf("%d",&saveChoice);
-        fflush(stdout); //flushes stdout so only calendar is in stdout
         for(int i = 1; i <= days; i++){
             printf("|%d", i);
             if(i % 7 == 0){
@@ -27,35 +20,49 @@ int year;
         if(saveChoice = 1){
             //char s;
             FILE *fp;
-            fp = freopen("data.txt", "a+", stdout);
-            //copies stdout to data.txt
+            fp = freopen("data.txt", "w+", stdout);
+            printf("%d", days);
+            //writes the value of days to data.txt
             if(fp == NULL){
-            //incase file has nothing in it
             perror("Error opening file");
             exit(EXIT_FAILURE);
             }
-           // while((s = fgetc(fp)!= EOF)){
-           //     printf("%c",s); //supposed to print the contents of the file (for TESTING)
-            //}
-
             fclose(fp);
         }
     }
-
+    //This saves your calendar (can only have one saved calendar at any given time)
     void savedCalendar(){
-        FILE *fp;
-        char consoleStdout;
-        fp = fopen("data.txt", "r+");
-        while((consoleStdout = fgetc(fp)!= EOF)){
-                printf("%c",consoleStdout);
-                //supposed to print contents of the file to console (contents being stdout)
+        FILE* savedFile;
+        savedFile = fopen("data.txt", "r");
+        int fileValue;
+        if(savedFile == NULL){
+            printf("File Error");
+            exit(EXIT_FAILURE);
+        }
+         while(fscanf(savedFile, "%d", &fileValue ) == 1)
+        /* fscanf returns the number of input items successfully matched and assigned,
+           which can be fewer than provided for, or even zero in the event of an early matching failure.
+           So that loop will read everything, split by a space or newline, until it gets to the end of file,
+           or it encounters something that isnt a integer. Thank you person on reddit for explaining this to me.
+           Follow C_Programming If you see this ;) */
+
+         for(int i = 1; i <= fileValue; i++){
+            printf("|%d", i);
+            if(i % 7 == 0){
+                printf("\n");
             }
+        }
+        fclose(savedFile);
+
     }
 
       void thirtyOneMonth(){
+        //for loop creates calendar
         for(int i = 1; i <= 31; i++){
-            printf("|%d", i); //creates calendar
-            if(i % 7 == 0){ //newline for a new week
+
+            printf("|%d", i);
+            if(i % 7 == 0){
+                //newline for a new week
                 printf("\n");
             }
         }
@@ -69,6 +76,5 @@ int year;
             }
         }
     }
-
 
 
