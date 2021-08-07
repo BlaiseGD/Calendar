@@ -2,6 +2,16 @@
 #include <stdlib.h>
 
 int year;
+    //This allows for the option to return to the main menu to make or view more calendars
+    void option(){
+        int answer;
+        printf("\n\nDo you want to return to the main menu?\n");
+        scanf("%d",&answer);
+        if(answer == 1) system("clear");
+        else{
+            exit(EXIT_SUCCESS);
+        }
+    }
     //This allows for the creation of your very own custom calendar
     void customCalendar(){
         int days;
@@ -28,6 +38,8 @@ int year;
             exit(EXIT_FAILURE);
             }
             fclose(fp);
+            fclose(stdout);
+            freopen("/dev/tty", "a", stdout);
         }
     }
     //This saves your calendar (can only have one saved calendar at any given time)
