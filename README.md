@@ -6,5 +6,6 @@ Feature List: Create and save calendars in a file for personal use, view calenda
 This is just supposed to be a fun little beginnerish project.
 
 Current Featureset:Create and save calendar, view calendar for any month and year
+
 Goals For Future Updates: Add in French Republican (Revolutionar) Calendar, Full year calendar, Colors for Calendars 
 
